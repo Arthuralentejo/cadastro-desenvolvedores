@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="bootstrap.min.css" rel="stylesheet">
+
+    <title>Cadastro de Desenvolvedores</title>
+  </head>
+  <body>
+  <h1>Cadastro de Desenvolvedores</h1>
+  <form action="{{ url_for('send_data')}}" id="cadastro" method="POST">
+    <div id="nome">
+      <label>Nome</label>
+      <input type="text" name="nome"> 
+    </div> 
+    <div id="habilidade">
+      <label>Habilidade</label>
+      <input type="text" name="habilidade">
+    </div>
+    <input type="submit" value="Enviar">    
+  </form>
+  {% if devs != null %}
+  <div id="output">
+    <h3>Saida</h3></br>
+    <h5>{{devs}}</h5>  
+  </div>
+  {% endif %}
+
+
+
+
+
+
+
+
+    <script src="bootstrap.bundle.min.js"></script>
+  </body>
+</html>
