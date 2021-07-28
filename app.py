@@ -14,6 +14,7 @@ def send_data():
     nome = request.form['nome']
     habilidade = request.form['habilidade']
     print(nome)
+    print(habilidade)
     cur = con.cursor()
     cur.execute("INSERT INTO users (nome, habilidades) VALUES (?,?)", (nome, habilidade))
     con.commit()
