@@ -13,6 +13,7 @@ def send_data():
     con = sqlite3.connect('example.db')
     nome = request.form['nome']
     habilidade = request.form['habilidade']
+    print(nome)
     cur = con.cursor()
     cur.execute("INSERT INTO users (nome, habilidades) VALUES (?,?)", (nome, habilidade))
     con.commit()
