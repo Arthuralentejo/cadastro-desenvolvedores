@@ -1,19 +1,30 @@
-from flask import Flask, jsonify, request, render_template
+import sqlite3
+from flask import Flask, request, render_template
 app = Flask(__name__)
-devs = []
+
 @app.route('/')
 def hello():
     return render_template("cadastro.html")
+
 @app.route('/send_data', methods = ['POST'])
 def send_data():
     nome = request.form['nome']
     habilidade = request.form['habilidade']
-    jdev = {
-        'nome': nome,
-        'habilidades':habilidade
-    }
-    devs.append(jdev)
-    return render_template("cadastro.html", **{'devs':devs})
+    con = sqlite3.connect('devs.db')
+    cur = con.cursor()
+    cur.execute("INSERT INTO devs (nome, habilidades) VALUES (?,?)", (nome, habilidade))
+    con.commit()
+    con.close()
+    return render_template("cadastro.html")
+
+@app.route('/show_data', methods = ['GET'])
+def show_data():
+    con = sqlite3.connect('devs.db')
+    cur = con.cursor()
+    show = cur.execute("SELECT * FROM devs")
+    con.commit()
+    con.close()
+    return render_template("cadastro.html", **{'devs':show})
 
 if __name__ == '__main__':
     app.run(debug=True)
