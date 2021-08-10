@@ -4,7 +4,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link href="bootstrap.min.css" rel="stylesheet"> -->
 
     <title>Cadastro de Desenvolvedores</title>
 </head>
@@ -22,16 +21,26 @@
         </div>
         <input type="submit" value="Enviar">
     </form>
-    <button type="submit" formaction="{{ url_for('show_data')}}" formmethod="GET">Mostrar</button>
-    <h4>{{devs}}</h4>
+    <br>
+
+    <form action="{{ url_for('show_data')}}" id="mostrar" method="GET">
+        <label>Desenvolvedores Cadastrados</label>
+        <input type="submit" value="Mostrar">
+        <ul>
+            {% for i in nomes %}
+            <li>{{i}}</li>
+            {% endfor%}
+        </ul>
+    </form>
+    <br>
+
+    <form action="{{ url_for('del_data')}}" id="cadastro" method="POST">
+        <label>Nome</label>
+        <input type="text" name="delnome">
+        <input type="submit" value="Deletar">
+    </form>
 
 
-
-
-
-
-
-    <!-- <script src="bootstrap.bundle.min.js"></script> -->
 </body>
 
 </html>
