@@ -1,0 +1,1 @@
+CREATE TABLE devs (id PRIMARY KEY AUTOINCREMENT, nome text NOT NULL, habilidades text NOT NULL);
